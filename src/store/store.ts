@@ -54,6 +54,5 @@ export function useSelectedSeat(): SeatSelection {
   if (selectedSeat.row < 1 || selectedSeat.column < 1) return null
   if (selectedSeat.row > seatingLayout[selectedSeat.place].rows || selectedSeat.column > seatingLayout[selectedSeat.place].columns) return null
 
-
   return selectedSeat as { place: SeatGroup, row: number, column: number };
 }
