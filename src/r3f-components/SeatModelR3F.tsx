@@ -8,8 +8,8 @@ import { useGLTF } from '@react-three/drei'
 import { MeshStandardMaterial, MeshBasicMaterial } from 'three'
 import { ThreeEvent } from '@react-three/fiber'
 
-const materialOccupied = new MeshStandardMaterial({ color: '#909090' })
-const materialUnoccupied = new MeshStandardMaterial({ color: '#900000' })
+const materialOccupied = new MeshStandardMaterial({ color: '#808080' })
+const materialUnoccupied = new MeshStandardMaterial({ color: '#800000' })
 const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
 
 // const colorUnoccupied = "#900000"
