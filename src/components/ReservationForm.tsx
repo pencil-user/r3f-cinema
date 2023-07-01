@@ -43,7 +43,6 @@ export function ReservationForm() {
         Seat
       </button>
       <form onSubmit={submitHandler}>
-
         <br />
         <label>
           <input
@@ -64,7 +63,8 @@ export function ReservationForm() {
             value="balcony"
             onChange={radioHandler}
             checked={'balcony' === state.selectedSeat.place}
-          />  Balcony
+          />
+          Balcony
         </label>
         <br />
         row: <br />

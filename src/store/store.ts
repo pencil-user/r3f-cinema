@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
+import { clamp } from '../utilities/clamp'
 
 export type SeatGroup = 'balcony' | 'ground'
 
@@ -44,7 +45,21 @@ export const useCinemaStore = create<CinemaState>((set) => ({
   reservedSeats: {},
   reserveSeat: (seatID) => set((state) => ({ reservedSeats: { ...state.reservedSeats, [seatID]: true } })),
   selectedSeat: { place: 'balcony', row: '', column: '' },
-  setSelectedSeat: (selectedSeat) => set(() => ({ selectedSeat })),
+  setSelectedSeat: (selectedSeat) => set((state) => {
+    console.log('SETSELECTEDSEAT', selectedSeat, state)
+    if (!!selectedSeat.column && !!selectedSeat.row) {
+      const selection: { row: number, column: number } = {
+        row: clamp(selectedSeat.row, 1, state.seatingLayout[selectedSeat.place].rows),
+        column: clamp(selectedSeat.column, 1, state.seatingLayout[selectedSeat.place].columns)
+      }
+      console.log('stuff', selection)
+      return { selectedSeat: { place: selectedSeat.place, row: selection.row, column: selection.column } }
+    } else {
+      return { selectedSeat }
+    }
+
+  }
+  ),
 }))
 
 export function useSelectedSeat(): SeatSelection {

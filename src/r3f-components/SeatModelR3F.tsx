@@ -8,7 +8,7 @@ import { useGLTF } from '@react-three/drei'
 import { MeshStandardMaterial, MeshBasicMaterial } from 'three'
 import { ThreeEvent } from '@react-three/fiber'
 
-const materialOccupied = new MeshStandardMaterial({ color: '#808080' })
+const materialOccupied = new MeshStandardMaterial({ color: '#505050' })
 const materialUnoccupied = new MeshStandardMaterial({ color: '#800000' })
 const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
 
@@ -35,7 +35,7 @@ export function SeatModelR3F(props: { 'position-x': number, 'position-y': number
     >
       <mesh
         geometry={nodes['Cube1'].geometry}
-        rotation={[0, 0, Math.PI*2]}
+        rotation={[0, 0, Math.PI * 2]}
         //scale={props.scale}
         material={material}
         receiveShadow
