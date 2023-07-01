@@ -4,14 +4,14 @@
       "bufferView": 0,
       "byteOffset": 0,
       "componentType": 5125,
-      "count": 1662,
+      "count": 1656,
       "type": "SCALAR"
     },
     {
       "bufferView": 1,
       "byteOffset": 0,
       "componentType": 5126,
-      "count": 279,
+      "count": 278,
       "max": [
         5.25961012693124785322e-01,
         2.41312000000000015376e+00,
@@ -28,7 +28,7 @@
       "bufferView": 1,
       "byteOffset": 12,
       "componentType": 5126,
-      "count": 279,
+      "count": 278,
       "type": "VEC3"
     }
   ],
@@ -39,20 +39,20 @@
   "bufferViews": [
     {
       "buffer": 0,
-      "byteLength": 6648,
+      "byteLength": 6624,
       "byteOffset": 0
     },
     {
       "buffer": 0,
-      "byteLength": 6696,
-      "byteOffset": 6648,
+      "byteLength": 6672,
+      "byteOffset": 6624,
       "byteStride": 24
     }
   ],
   "buffers": [
     {
-      "byteLength": 13344,
-      "uri": "cinemaChairD.bin"
+      "byteLength": 13296,
+      "uri": "cinemaChair6.bin"
     }
   ],
   "materials": [

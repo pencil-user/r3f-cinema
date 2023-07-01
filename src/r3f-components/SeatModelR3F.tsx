@@ -18,7 +18,7 @@ const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
 
 export function SeatModelR3F(props: { 'position-x': number, 'position-y': number, 'position-z': number, scale: number, isReserved: boolean, isSelected: boolean, onClick: (e: ThreeEvent<MouseEvent>) => void }) {
   //const { nodes, materials } = useGLTF('./cinemaChair/cinemaChair.gltf') as any
-  const { nodes, materials } = useGLTF('./cinemaChairD/cinemaChairD3') as any
+  const { nodes, materials } = useGLTF('./cinemaChairD/cinemaChair6') as any
 
 
   const material = props.isSelected ? materialSelected : (props.isReserved ? materialOccupied : materialUnoccupied)
