@@ -14,6 +14,8 @@ Run the application with:
 
 ## Technologies used
 
+* Vite
+* Typescript
 * React
 * React Three Fiber
 * Zustand
