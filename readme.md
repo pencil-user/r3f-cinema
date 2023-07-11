@@ -11,3 +11,9 @@ Install all the necessary packages with:
 Run the application with:
 
 `npm run dev`
+
+## Technologies used
+
+* React
+* React Three Fiber
+* Zustand
