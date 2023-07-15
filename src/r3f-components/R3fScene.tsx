@@ -71,7 +71,7 @@ export function R3fScene() {
           intensity={presentation === '3d' ? 1 : 0.1}
         />
 
-        <animated.group position-x={x} position-y={9.5}>
+        <animated.group position-x={x} position-y={10}>
           <SeatingFloorR3F place='balcony' />
         </animated.group>
         <group position-x={0} position-y={-0.5}>

@@ -27,13 +27,13 @@ export function SeatingFloorR3F({ place }: { place: SeatGroup }
   return (
     // <group position-x={positionX} position-y={'ground' === place ? 0 : 10}>
     <>
-      <group position-x={rows + 1} position-y={rows / ('ground' === place ? 3 : 2)}>
+      <group position-x={rows + 1} position-y={rows / ('ground' === place ? 3 : 2.1)}>
         <RowR3F
           width={columns}
         />
       </group>
       {arrayRange(1, rows).map((valueRow) =>
-        <group position-x={valueRow} position-y={valueRow / ('ground' === place ? 3 : 2)} key={valueRow}>
+        <group position-x={valueRow} position-y={valueRow / ('ground' === place ? 3 : 2.1)} key={valueRow}>
           <RowR3F
             width={columns}
           />
@@ -98,7 +98,7 @@ export function SeatR3F({ isReserved = false, isSelected = false, row, column, s
   return (
     <>
       {(isSelected && presentation === 'seat') && <group
-        position={[0, 2, offset]}
+        position={[0, 1.9, offset]}
         rotation={[0, Math.PI * 0.5, 0]}
       >
         <PerspectiveCamera

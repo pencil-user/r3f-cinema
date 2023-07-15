@@ -41,8 +41,8 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
 
   return (
     <>
-      <mesh position-y={0.7} position-x={-0.4}>
-        <boxGeometry args={[0.1, 0.5, 1 * width + 2]} />
+      <mesh position-y={0.9} position-x={-0.4}>
+        <boxGeometry args={[0.1, 0.8, 1 * width + 2]} />
         <meshStandardMaterial
           color={'red'}
           roughness={0.8}
@@ -78,9 +78,13 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
           </mesh>
         </>
       }
-      <RowR3F
-        width={width}
-      />
+      <mesh position-y={0.3} position-x={0}>
+        <boxGeometry args={[1, 0.5, 1 * width + 2]} />
+        <meshStandardMaterial
+          color={'red'}
+          roughness={0.8}
+        />
+      </mesh>
     </>
   )
 }
@@ -92,7 +96,7 @@ export function BackWallsR3F() {
         //castShadow
         receiveShadow
         //rotation-z={-Math.PI * 0.5}
-        position-y={3}
+        position-y={4}
         position-z={-11.1}
         position-x={5}
 
@@ -104,7 +108,7 @@ export function BackWallsR3F() {
         //castShadow
         receiveShadow
         //rotation-z={-Math.PI * 0.5}
-        position-y={3}
+        position-y={4}
         position-z={11.1}
         position-x={5}
 
@@ -116,7 +120,7 @@ export function BackWallsR3F() {
         //castShadow
         receiveShadow
         //rotation-z={-Math.PI * 0.5}
-        position-y={3}
+        position-y={4}
         position-z={0}
         position-x={10.5}
 
@@ -140,8 +144,8 @@ export function SideWallsR3F() {
       position-x={8}
 
     >
-      <boxGeometry args={[29, 9, 0.3]} />
-      <meshStandardMaterial color={'#555555'} />
+      <boxGeometry args={[29, 11, 0.3]} />
+      <meshStandardMaterial color={'#e79558'} />
     </mesh>
     <mesh
       castShadow
@@ -152,31 +156,31 @@ export function SideWallsR3F() {
       position-x={8}
 
     >
-      <boxGeometry args={[29, 9, 0.3]} />
-      <meshStandardMaterial color={'#555555'} />
+      <boxGeometry args={[29, 11, 0.3]} />
+      <meshStandardMaterial color={'#e79558'} />
     </mesh>
     <mesh
       //castShadow
       receiveShadow
       //rotation-z={-Math.PI * 0.5}
-      position-y={12}
+      position-y={14}
       position-z={-11.1}
       position-x={1.5}
 
     >
-      <boxGeometry args={[20, 9, 0.3]} />
+      <boxGeometry args={[20, 8, 0.3]} />
       <meshStandardMaterial color={'#555555'} />
     </mesh>
     <mesh
       //castShadow
       receiveShadow
       //rotation-z={-Math.PI * 0.5}
-      position-y={12}
+      position-y={14}
       position-z={11.1}
       position-x={1.5}
 
     >
-      <boxGeometry args={[20, 9, 0.3]} />
+      <boxGeometry args={[20, 8, 0.3]} />
       <meshStandardMaterial color={'#555555'} />
     </mesh>
   </>
@@ -193,7 +197,7 @@ export function MovieCanvasR3F() {
         position-x={-6.1}
         position-y={4}
       >
-        <planeGeometry args={[25, 25]} />
+        <planeGeometry args={[25, 26]} />
         <meshStandardMaterial color={'#b0b0b0'} />
       </mesh>
       <mesh
