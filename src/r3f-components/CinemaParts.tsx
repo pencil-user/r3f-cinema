@@ -79,7 +79,7 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
         </>
       }
       <mesh position-y={0.3} position-x={0}>
-        <boxGeometry args={[1, 0.5, 1 * width + 2]} />
+        <boxGeometry args={[1, 0.6, 1 * width + 2]} />
         <meshStandardMaterial
           color={'red'}
           roughness={0.8}
