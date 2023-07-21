@@ -22,18 +22,18 @@ export function SeatingFloorR3F({ place }: { place: SeatGroup }
 
   const { columns, rows } = seatingLayout[place]
 
-  const positionX = 'ground' === place ? 0 : (seatingGroup === 'balcony' ? 11 : 22)
+  //const positionX = 'ground' === place ? 0 : (seatingGroup === 'balcony' ? 11 : 22)
 
   return (
     // <group position-x={positionX} position-y={'ground' === place ? 0 : 10}>
     <>
-      <group position-x={rows + 1} position-y={rows / ('ground' === place ? 3 : 2.1)}>
+      <group position-x={rows + 1} position-y={rows / ('ground' === place ? 3 : 2)}>
         <RowR3F
           width={columns}
         />
       </group>
       {arrayRange(1, rows).map((valueRow) =>
-        <group position-x={valueRow} position-y={valueRow / ('ground' === place ? 3 : 2.1)} key={valueRow}>
+        <group position-x={valueRow} position-y={valueRow / ('ground' === place ? 3 : 2)} key={valueRow}>
           <RowR3F
             width={columns}
           />

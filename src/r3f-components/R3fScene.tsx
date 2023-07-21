@@ -33,7 +33,7 @@ export function R3fScene() {
   const { place: seatingGroup } = useCinemaStore((state) => state.selectedSeat)
   const seatingLayout = useCinemaStore((state) => state.seatingLayout)
   const presentation = useCinemaStore((state) => state.presentation)
-  const balconyPositionX = ((seatingGroup === 'balcony') || presentation === 'seat' ? 12 : 21.4)
+  const balconyPositionX = ((seatingGroup === 'balcony') || presentation === 'seat' ? 12 : 21.7)
 
   const { x } = useSpring({
     x: balconyPositionX,
