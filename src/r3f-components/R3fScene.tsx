@@ -68,7 +68,8 @@ export function R3fScene() {
           position-y={60}
           position-x={5}
           castShadow
-          intensity={presentation === '3d' ? 1 : 0.1}
+          intensity={presentation === '3d' ? 1 : 0.2}
+          color={presentation === '3d' ? 'white' : '#8888ff'}
         />
 
         <animated.group position-x={x} position-y={10}>

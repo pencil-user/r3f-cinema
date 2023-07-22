@@ -197,7 +197,7 @@ export function MovieCanvasR3F() {
         position-x={-6.1}
         position-y={4}
       >
-        <planeGeometry args={[25, 26]} />
+        <planeGeometry args={[25, 28]} />
         <meshStandardMaterial color={'#b0b0b0'} />
       </mesh>
       <mesh
