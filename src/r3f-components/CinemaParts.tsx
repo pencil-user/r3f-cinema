@@ -136,6 +136,18 @@ export function SideWallsR3F() {
 
   return (<>
     <mesh
+      //castShadow
+      receiveShadow
+      //rotation-z={-Math.PI * 0.5}
+      position-y={8}
+      position-z={0}
+      position-x={23}
+
+    >
+      <boxGeometry args={[0.3, 9, 22.5]} />
+      <meshStandardMaterial color={'#555555'} />
+    </mesh>
+    <mesh
       castShadow
       receiveShadow
       //rotation-z={-Math.PI * 0.5}

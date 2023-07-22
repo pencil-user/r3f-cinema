@@ -48,5 +48,5 @@ function Seat({ isReserved = false, isSelected = false, row, column, seatingGrou
   const reserveSeat = useCinemaStore((state) => state.reserveSeat)
   const setSelectedSeat = useCinemaStore((state) => state.setSelectedSeat)
   const seatID = toSeatId(seatingGroup, column, row)
-  return <button className={isSelected ? 'seatButton selectedButton' : 'seatButton'} disabled={isReserved} onClick={() => setSelectedSeat({ place: seatingGroup, column, row })}>_</button>
+  return <button className={isSelected ? 'selectedButton seatButton' : 'seatNotSelected seatButton'} disabled={isReserved} onClick={() => setSelectedSeat({ place: seatingGroup, column, row })}>_</button>
 }

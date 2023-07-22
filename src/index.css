@@ -89,12 +89,13 @@ button {
 }
 
 button:hover {
-  box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 5px 0px, rgba(0, 0, 0, 0.18) 0px 0px 9px 0px ;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 5px 5px 0px, rgba(0, 0, 0, 0.18) 0px 0px 9px 0px;
 }
 
 button[disabled] {
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 5px 0px;
   background-color: #f2f2f2;
+  color: #555555
 }
 
 /*
@@ -137,6 +138,10 @@ button:focus-visible {
   padding: 0.3em 0.3em;
   margin: 1px;
   width: 30px;
+}
+
+.seatNotSelected {
+  background-color: #800000;
 }
 
 .pageContainer {
