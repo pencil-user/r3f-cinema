@@ -10,7 +10,7 @@ import { ThreeEvent } from '@react-three/fiber'
 
 const materialOccupied = new MeshStandardMaterial({ color: '#505050' })
 const materialUnoccupied = new MeshStandardMaterial({
-  color: '#800020',
+  color: '#800000',
   //roughness: 0.5
 })
 const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
