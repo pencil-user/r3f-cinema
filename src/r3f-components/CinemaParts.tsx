@@ -102,7 +102,7 @@ export function BackWallsR3F() {
 
       >
         <boxGeometry args={[11, 8, 0.3]} />
-        <meshStandardMaterial color={'#e79558'}/>
+        <meshStandardMaterial color={'#700000'}/>
       </mesh>
       <mesh
         //castShadow
@@ -114,7 +114,7 @@ export function BackWallsR3F() {
 
       >
         <boxGeometry args={[11, 8, 0.3]} />
-        <meshStandardMaterial color={'#e79558'}/>
+        <meshStandardMaterial color={'#700000'}/>
       </mesh>
       <mesh
         //castShadow
@@ -126,7 +126,7 @@ export function BackWallsR3F() {
 
       >
         <boxGeometry args={[0.3, 8, 22.5]} />
-        <meshStandardMaterial color={'#e79558'}/>
+        <meshStandardMaterial color={'#700000'}/>
       </mesh>
     </>
   )
@@ -145,7 +145,7 @@ export function SideWallsR3F() {
 
     >
       <boxGeometry args={[0.3, 9, 22.5]} />
-      <meshStandardMaterial color={'#e79558'}/>
+      <meshStandardMaterial color={'#700000'}/>
     </mesh>
     <mesh
       castShadow
@@ -181,7 +181,7 @@ export function SideWallsR3F() {
 
     >
       <boxGeometry args={[20, 8, 0.3]} />
-      <meshStandardMaterial  color={'#e79558'}/>
+      <meshStandardMaterial  color={'#700000'}/>
     </mesh>
     <mesh
       //castShadow
@@ -193,7 +193,7 @@ export function SideWallsR3F() {
 
     >
       <boxGeometry args={[20, 8, 0.3]} />
-      <meshStandardMaterial  color={'#e79558'}/>
+      <meshStandardMaterial  color={'#700000'}/>
     </mesh>
   </>
   )
