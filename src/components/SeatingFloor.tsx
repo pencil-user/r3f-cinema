@@ -13,8 +13,8 @@ export function SeatingFloor() {
 
   const selectedSeatID = selection ? toSeatId(selectedSeat.place, selectedSeat.column || 1, selectedSeat.row || 1) : null
   return (
-      <div>
-        <table>
+    <div className='mainContainer'>
+        <table className='mainTable'>
           <tbody>
             <tr>
               <td>
@@ -40,7 +40,7 @@ export function SeatingFloor() {
               </tr>)}
           </tbody>
         </table>
-      </div>
+    </div>
   )
 }
 

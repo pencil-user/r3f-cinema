@@ -120,6 +120,19 @@ button:focus-visible {
   }
 }
 
+.mainContainer {
+  height: 95vh;
+  width: 70vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainTable {
+  width: 95%;
+  height: 60%;
+}
+
 .overlay {
   color: white;
   position: fixed;
@@ -135,9 +148,12 @@ button:focus-visible {
 }
 
 .seatButton {
-  padding: 0.3em 0.3em;
+  padding: 3px 3px;
   margin: 1px;
-  width: 30px;
+  /* width: 30px; */
+  width:80%;
+  height:100%;
+  min-height:40px;
 }
 
 .seatNotSelected {
