@@ -64,7 +64,10 @@ export function SeatingFloorR3F({ place }: { place: SeatGroup }
 export function SeatRowR3F({ stalls, start, currentRow, seatingGroup }: { stalls: number, start: number, currentRow: number, seatingGroup: SeatGroup }) {
   const selectedSeat = useCinemaStore((state) => state.selectedSeat)
   const reservedSeats = useCinemaStore((state) => state.reservedSeats)
+  const takenSeats = useCinemaStore((state) => state.takenSeats)
   const selectedSeatID = selectedSeat ? toSeatId(selectedSeat.place, selectedSeat.column || 1, selectedSeat.row || 1) : null
+  const takenSeatID = selectedSeat ? toSeatId(selectedSeat.place, selectedSeat.column || 1, selectedSeat.row || 1) : null
+
   return (
     <>
       {arrayRange(1, stalls).map((valueStall) =>
@@ -72,6 +75,8 @@ export function SeatRowR3F({ stalls, start, currentRow, seatingGroup }: { stalls
         <SeatR3F
           isReserved={toSeatId(seatingGroup, valueStall, currentRow) in reservedSeats}
           isSelected={!!selectedSeatID && toSeatId(seatingGroup, valueStall, currentRow) === selectedSeatID}
+          isTaken={toSeatId(seatingGroup, valueStall, currentRow) in takenSeats}
+
           row={currentRow}
           column={valueStall}
           seatingGroup={seatingGroup}
@@ -84,7 +89,7 @@ export function SeatRowR3F({ stalls, start, currentRow, seatingGroup }: { stalls
 
 }
 
-export function SeatR3F({ isReserved = false, isSelected = false, row, column, seatingGroup = 'ground', offset }: { isReserved: boolean, isSelected: boolean, row: number, column: number, seatingGroup: 'ground' | 'balcony', offset: number }) {
+export function SeatR3F({ isReserved = false, isSelected = false, isTaken = false, row, column, seatingGroup = 'ground', offset }: { isReserved: boolean, isSelected: boolean, isTaken:boolean, row: number, column: number, seatingGroup: 'ground' | 'balcony', offset: number }) {
   const reserveSeat = useCinemaStore((state) => state.reserveSeat)
   const setSelectedSeat = useCinemaStore((state) => state.setSelectedSeat)
   const seatID = toSeatId(seatingGroup, column, row)
@@ -115,6 +120,7 @@ export function SeatR3F({ isReserved = false, isSelected = false, row, column, s
         position-z={offset}
         scale={0.45}
         isReserved={isReserved}
+        isTaken={isTaken}
         isSelected={isSelected}
         onClick={clickHandler}
       />

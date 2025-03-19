@@ -8,23 +8,26 @@ import { useGLTF } from '@react-three/drei'
 import { MeshStandardMaterial, MeshBasicMaterial } from 'three'
 import { ThreeEvent } from '@react-three/fiber'
 
-const materialOccupied = new MeshStandardMaterial({ color: '#505050' })
+const materialOccupied = new MeshStandardMaterial({ color: '#106010' })
+const materialTaken = new MeshStandardMaterial({ color: '#303030' })
 const materialUnoccupied = new MeshStandardMaterial({
   color: '#800000',
   //roughness: 0.5
 })
+
+
 const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
 
 // const colorUnoccupied = "#900000"
 // const colorOccupied = "#900000"
 // const colorSelected = "#3300ff"
 
-export function SeatModelR3F(props: { 'position-x': number, 'position-y': number, 'position-z': number, scale: number, isReserved: boolean, isSelected: boolean, onClick: (e: ThreeEvent<MouseEvent>) => void }) {
+export function SeatModelR3F(props: { 'position-x': number, 'position-y': number, 'position-z': number, scale: number, isReserved: boolean, isSelected: boolean, isTaken: boolean, onClick: (e: ThreeEvent<MouseEvent>) => void }) {
   //const { nodes, materials } = useGLTF('./cinemaChair/cinemaChair.gltf') as any
   const { nodes, materials } = useGLTF('./cinemaChairD/cinemaChair6') as any
 
 
-  const material = props.isSelected ? materialSelected : (props.isReserved ? materialOccupied : materialUnoccupied)
+  const material = props.isSelected ? materialSelected : (props.isReserved ? materialOccupied : (props.isTaken ? materialTaken : materialUnoccupied))
 
   return (
     <group

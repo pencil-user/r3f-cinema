@@ -156,6 +156,14 @@ button:focus-visible {
   min-height:40px;
 }
 
+.seatReserved {
+  background-color: green;
+}
+
+.seatButton:disabled {
+  background-color: rgb(57, 57, 57);
+}
+
 .seatNotSelected {
   background-color: #800000;
 }

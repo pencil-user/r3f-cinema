@@ -7,7 +7,9 @@ export function ReservationForm() {
 
   const state = useCinemaStore() // we are using entire Zustand state here anyway
 
-  const buttonEnabled = state.selectedSeat.row && state.selectedSeat.column && !(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row) in state.reservedSeats)
+  const buttonEnabled = state.selectedSeat.row && state.selectedSeat.column && !(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row) in state.takenSeats)
+
+  const shouldSelect = state.selectedSeat.row && state.selectedSeat.column && !(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row) in state.reservedSeats)
 
   const radioHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value as 'ground' | 'balcony'
@@ -28,7 +30,12 @@ export function ReservationForm() {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    state.selectedSeat.row && state.selectedSeat.column && state.reserveSeat(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row))
+    if(shouldSelect){
+      state.selectedSeat.row && state.selectedSeat.column && state.reserveSeat(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row))
+    } else {
+      state.selectedSeat.row && state.selectedSeat.column && state.unReserveSeat(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row))
+
+    }
   }
 
   return (
@@ -81,9 +88,9 @@ export function ReservationForm() {
           value={state.selectedSeat.column}
           onChange={numberHandler}
           type='number'
-        /><br />
-        <button disabled={!buttonEnabled}>
-          submit
+        /><br /><br />
+        <button disabled={!buttonEnabled} style={{width:'290px'}}>
+          {shouldSelect ? 'Select' : 'Deselect'}
         </button>
       </form>
     </div >
