@@ -38,6 +38,8 @@ export function SeatModelR3F(props: { 'position-x': number, 'position-y': number
       scale={props['scale']}
       onClick={props['onClick']}
       rotation={[0, Math.PI, 0]}
+      onPointerEnter={(e)=> {document.body.style.cursor = 'pointer'; e.stopPropagation();}}
+      onPointerLeave={(e)=> {document.body.style.cursor = 'auto'; e.stopPropagation();}}
     >
       <mesh
         geometry={nodes['Cube1'].geometry}
@@ -45,6 +47,7 @@ export function SeatModelR3F(props: { 'position-x': number, 'position-y': number
         //scale={props.scale}
         material={material}
         receiveShadow
+      
       />
     </group>
   )

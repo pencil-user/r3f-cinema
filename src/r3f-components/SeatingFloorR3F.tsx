@@ -89,7 +89,7 @@ export function SeatRowR3F({ stalls, start, currentRow, seatingGroup }: { stalls
 
 }
 
-export function SeatR3F({ isReserved = false, isSelected = false, isTaken = false, row, column, seatingGroup = 'ground', offset }: { isReserved: boolean, isSelected: boolean, isTaken:boolean, row: number, column: number, seatingGroup: 'ground' | 'balcony', offset: number }) {
+export function SeatR3F({ isReserved = false, isSelected = false, isTaken = false, row, column, seatingGroup = 'ground', offset }: { isReserved: boolean, isSelected: boolean, isTaken: boolean, row: number, column: number, seatingGroup: 'ground' | 'balcony', offset: number }) {
   const reserveSeat = useCinemaStore((state) => state.reserveSeat)
   const setSelectedSeat = useCinemaStore((state) => state.setSelectedSeat)
   const seatID = toSeatId(seatingGroup, column, row)
@@ -138,7 +138,11 @@ export function RowR3F({ width }: { width: number }) {
   }
 
   return (
-    <mesh castShadow receiveShadow onClick={clickHandler}>
+    <mesh castShadow receiveShadow
+      onClick={clickHandler}
+      onPointerEnter={(e) => { e.stopPropagation(); }}
+      onPointerLeave={(e) => { e.stopPropagation(); }}
+    >
       <boxBufferGeometry args={[1, 1, 1 * width + 2]} />
       <meshStandardMaterial
         color={'red'}

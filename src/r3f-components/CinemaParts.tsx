@@ -28,10 +28,12 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
   const hoverHandler = (e: ThreeEvent<MouseEvent>) => {
     setHover(true)
     e.stopPropagation()
+    document.body.style.cursor = 'pointer'
   }
   const hoverLeaveHandler = (e: ThreeEvent<MouseEvent>) => {
     setHover(false)
     e.stopPropagation()
+    document.body.style.cursor = 'auto'
   }
 
   const font = useFont('./Trebuchet MS_Regular.json').data
