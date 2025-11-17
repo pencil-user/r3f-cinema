@@ -1,24 +1,32 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { Canvas, Object3DNode, ThreeEvent, useFrame } from '@react-three/fiber'
+import { Canvas, 
+  // Object3DNode, 
+  useFrame } from '@react-three/fiber'
 import { Suspense } from 'react'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import { SeatGroup, useCinemaStore } from '../store/store'
+import { useCinemaStore } from '../store/store'
 import { arrayRange } from "../utilities/arrayRange";
 import { Stats } from '@react-three/drei'
 import { toSeatId } from '../store/store'
 //import { extend } from '@react-three/fiber'
 //import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-import myFont from './trebuc.ttf'
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
-import { useFont } from '@react-three/drei'
-import { Text3D } from '@react-three/drei'
+//import myFont from './trebuc.ttf'
+//import { useFont } from '@react-three/drei'
+//import { Text3D } from '@react-three/drei'
 import { SeatingFloorR3F } from './SeatingFloorR3F'
 import { MovieCanvasR3F, SideWallsR3F } from './CinemaParts'
-import { useSpring, animated } from '@react-spring/three'
+//import { useSpring, animated } from '@react-spring/three'
+
 import { Group } from 'three'
 //const AnimatedGroup = animated()
 import { Euler } from 'three'
-
+//import { animated, useSpring } from 'react-spring/web'
+import { animated, useSpring } from '@react-spring/three'
+import { EffectComposer} from '@react-three/postprocessing'
+import { BlendFunction } from 'postprocessing'
+import { Bloom } from '@react-three/postprocessing'
+import { BloomEffect } from 'postprocessing'
+//import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 /*
 extend({ TextGeometry })
 
@@ -27,12 +35,15 @@ declare module "@react-three/fiber" {
     textGeometry: Object3DNode<TextGeometry, typeof TextGeometry>;
   }
 }*/
-
+import { BlurPass, Resizer, KernelSize, Resolution } from 'postprocessing'
 
 export function R3fScene() {
   const { place: seatingGroup } = useCinemaStore((state) => state.selectedSeat)
   const seatingLayout = useCinemaStore((state) => state.seatingLayout)
   const presentation = useCinemaStore((state) => state.presentation)
+  const bloom = useCinemaStore((state)=> state.bloom);
+  const darkMode = useCinemaStore((state)=> state.darkMode);
+
   const balconyPositionX = ((seatingGroup === 'balcony') || presentation === 'seat' ? 12 : 21.7)
 
   const { x } = useSpring({
@@ -45,10 +56,20 @@ export function R3fScene() {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <Canvas shadows >
+      <Canvas shadows 
+      gl={{preserveDrawingBuffer:true}}
+      >
+       {bloom &&<EffectComposer>
+              <Bloom
+                  mipmapBlur={darkMode ? 0 : 0}
+                  luminanceThreshold={0.3}
+                  luminanceSmoothing={darkMode ? 0.2 : 0.025}
+                  intensity={darkMode ? 5 : 2}
+              />
+          </EffectComposer>}
         <Stats />
         {/* <OrbitControls target={[0, 0.35, 0]} maxPolarAngle={1.45} />
-        <PerspectiveCamera makeDefault fov={50} position={[150, 60, 5]} /> */}
+        <PerspectiveCamera makeDefault fov={50} position={[150, 60, 5]} />*/} 
         <color args={[0, 0, 0]} attach='background' />
         <mesh
           castShadow
@@ -60,16 +81,16 @@ export function R3fScene() {
         </mesh>
 
         <ambientLight
-          intensity={presentation === '3d' ? 0.2 : 0.2}
-          color={presentation === '3d' ? 'white' : '#5555ff'}
+          intensity={!darkMode ? 0.25 : 0.2}
+          color={!darkMode ? 'white' : '#5555ff'}
         />
 
         <pointLight
           position-y={60}
           position-x={5}
           castShadow
-          intensity={presentation === '3d' ? 1 : 0.2}
-          color={presentation === '3d' ? 'white' : '#8888ff'}
+          intensity={!darkMode ? 1 : 0.2}
+          color={!darkMode ? 'white' : '#8888ff'}
         />
 
         <animated.group position-x={x} position-y={10}>
@@ -80,7 +101,7 @@ export function R3fScene() {
         </group>
         <MovieCanvasR3F />
         <UpperCameraR3F />
-        <SideWallsR3F />
+        <SideWallsR3F /> 
       </Canvas>
     </Suspense>
   )

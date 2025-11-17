@@ -6,17 +6,19 @@ Command: npx gltfjsx@6.1.4 /home/dusan/Documents/wut/cinemaChair/cinemaChair.glt
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 import { MeshStandardMaterial, MeshBasicMaterial } from 'three'
-import { ThreeEvent } from '@react-three/fiber'
+import type { ThreeEvent } from '@react-three/fiber'
 
-const materialOccupied = new MeshStandardMaterial({ color: '#106010' })
-const materialTaken = new MeshStandardMaterial({ color: '#303030' })
+const materialOccupied = new MeshStandardMaterial({ color: '#106010' , emissive: '#20a820', emissiveIntensity: 0.6})
+const materialTaken = new MeshStandardMaterial({ color: '#303030'})
 const materialUnoccupied = new MeshStandardMaterial({
   color: '#800000',
   //roughness: 0.5
 })
 
 
-const materialSelected = new MeshStandardMaterial({ color: '#33ff00' })
+const materialSelected = new MeshStandardMaterial({ color: '#33ff00', 
+  emissive: '#66ff00' 
+})
 
 // const colorUnoccupied = "#900000"
 // const colorOccupied = "#900000"

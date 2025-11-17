@@ -1,15 +1,14 @@
 import React, { useRef, useState } from 'react'
-import { Canvas, Object3DNode, ThreeEvent, useFrame } from '@react-three/fiber'
+import type { Canvas, ThreeEvent, useFrame } from '@react-three/fiber'
 import { Suspense } from 'react'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import { SeatGroup, useCinemaStore } from '../store/store'
+import { Html, OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import {  useCinemaStore } from '../store/store'
 import { arrayRange } from "../utilities/arrayRange";
 import { Stats } from '@react-three/drei'
 import { toSeatId } from '../store/store'
 //import { extend } from '@react-three/fiber'
 //import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-import myFont from './trebuc.ttf'
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+//import myFont from './trebuc.ttf'
 import { useFont } from '@react-three/drei'
 import { Text3D } from '@react-three/drei'
 import { RowR3F } from './SeatingFloorR3F'
@@ -21,7 +20,7 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
 
   const [hover, setHover] = useState(false)
 
-  const clickHandler = (e: ThreeEvent<MouseEvent>) => {
+  const clickHandler = (e: any) => {
     setSelectedSeat({ ...selectedSeat, place: selectedSeat?.place === 'balcony' ? 'ground' : 'balcony' })
     e.stopPropagation()
   }
@@ -44,7 +43,7 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
   return (
     <>
       <mesh position-y={0.9} position-x={-0.4}>
-        <boxGeometry args={[0.1, 0.8, 1 * width + 2]} />
+        <boxGeometry args={[0.1, 0.8, 1 * width + 1.84]} />
         <meshStandardMaterial
           color={'red'}
           roughness={0.8}
@@ -52,7 +51,7 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
       </mesh>
       {presentation === '3d' &&
         <>
-          <Text3D
+          {/* <Text3D
             font={font}
             position-z={-2.6}
             position-x={-1.4}
@@ -77,11 +76,16 @@ export function BalconyEdgeR3F({ width }: { width: number }) {
           >
             <planeGeometry args={[1.3, 6]} />
             <meshStandardMaterial color={'white'} transparent opacity={0.8} emissive={'white'} />
-          </mesh>
+          </mesh> */}
+          <group position={[-0.9,0,0]} rotation={[-Math.PI * 0.5,0,-Math.PI * 0.5]}>
+            <Html transform castShadow>
+              <button style={{width:'180px', height:60, paddingTop:5, paddingBottom:5, margin:0, fontSize:'24px', borderTopLeftRadius:0, borderTopRightRadius:0, borderBottomLeftRadius:20, borderBottomRightRadius:20}} onClick={clickHandler}>{selectedSeat.place === 'balcony' ? 'To Ground' : ' To Balcony'}</button>
+            </Html>
+          </group>
         </>
       }
       <mesh position-y={0.3} position-x={0} castShadow>
-        <boxGeometry args={[1, 0.6, 1 * width + 2]} />
+        <boxGeometry args={[1, 0.6, 1 * width + 1.84]} />
         <meshStandardMaterial
           color={'red'}
           roughness={0.8}

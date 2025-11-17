@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useCinemaStore, useSelectedSeat, toSeatId } from "../store/store";
 import { clamp } from "../utilities/clamp";
-import { SeatSelection } from "../store/store";
 
 export function ReservationForm() {
 
@@ -10,6 +9,18 @@ export function ReservationForm() {
   const buttonEnabled = state.selectedSeat.row && state.selectedSeat.column && !(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row) in state.takenSeats)
 
   const shouldSelect = state.selectedSeat.row && state.selectedSeat.column && !(toSeatId(state.selectedSeat.place, state.selectedSeat.column, state.selectedSeat.row) in state.reservedSeats)
+
+  const bloom = state.bloom;
+
+  const setBloom = state.setBloom
+
+  const darkMode = state.darkMode
+
+  const setDarkMode = state.setDarkMode
+
+  const unReserveSeat = state.unReserveSeat
+
+  const reservedSeats = state.reservedSeats
 
   const radioHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value as 'ground' | 'balcony'
@@ -40,15 +51,20 @@ export function ReservationForm() {
 
   return (
     <div className='bigBox' >
-      <button onClick={() => state.setPresentation('2d')} disabled={state.presentation === '2d'}>
-        2D
-      </button>
-      <button onClick={() => state.setPresentation('3d')} disabled={state.presentation === '3d'}>
-        3D
-      </button>
-      <button onClick={() => state.setPresentation('seat')} disabled={state.presentation === 'seat'}>
-        Seat
-      </button>
+      <div style={{display: 'flex', flexDirection:'row'}}>
+        <button style={{width:80}} onClick={() => state.setPresentation('2d')} disabled={state.presentation === '2d'}>
+          2D
+        </button>
+        <button style={{width:80}} onClick={() => state.setPresentation('3d')} disabled={state.presentation === '3d'}>
+          3D
+        </button>
+        <button style={{width:80}} onClick={() => state.setPresentation('seat')} disabled={state.presentation === 'seat'}>
+          Seat
+        </button>
+        <button onClick={() => setDarkMode(!darkMode)} style={{width:33, height:40, paddingLeft:6, paddingRight:6}}>
+          <img src={darkMode ? 'darkModeWhite.svg' : 'darkModeBlack.svg'} style={{width:20, height:20, margin:0, padding:0}}/>
+        </button>
+      </div>      
       <form onSubmit={submitHandler}>
         <br />
         <label>
@@ -88,7 +104,21 @@ export function ReservationForm() {
           value={state.selectedSeat.column}
           onChange={numberHandler}
           type='number'
-        /><br /><br />
+        /><br />
+        {state.presentation !=="2d" && <>
+        <label>
+          <input
+            type="checkbox"
+            id="bloomcheck"
+            value="bloomval"
+            onClick={(e)=>{setBloom(!bloom)}}
+            checked={!!bloom} />
+          Bloom
+        </label>
+        </>}
+        <br />
+        {Object.keys(reservedSeats).map(seat => <button className={'chip'} onClick={(e)=>{e.preventDefault();unReserveSeat(seat);}}>{seat}</button>)}
+        <br/><br />
         <button disabled={!buttonEnabled} style={{width:'290px'}}>
           {shouldSelect ? 'Select' : 'Deselect'}
         </button>

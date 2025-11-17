@@ -1,11 +1,29 @@
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #ffffff;
+  --disabled: #070707;
+
+}
+
+/* Manual light mode override */
+[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --disabled: #e0e0e0;
+
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  /* color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #242424; */
+
+  color: var(--text);
+  background-color: var(--bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -86,6 +104,8 @@ button {
   transition: border-color 0.25s;
   width: 90px;
   margin: 3px;
+  color:var(--text);
+  background-color:var(--bg);
 }
 
 button:hover {
@@ -94,8 +114,9 @@ button:hover {
 
 button[disabled] {
   box-shadow: rgb(0 0 0 / 9%) 0px 2px 5px 0px;
-  background-color: #f2f2f2;
-  color: #555555
+  background-color: var(--disabled);
+  color: #555555;
+  cursor:default;
 }
 
 /*
@@ -105,7 +126,7 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }*/
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #f0f0f0;
@@ -118,7 +139,7 @@ button:focus-visible {
   button {
     background-color: white;
   }
-}
+} */
 
 .mainContainer {
   height: 95vh;
@@ -154,6 +175,12 @@ button:focus-visible {
   width:80%;
   height:80%;
   min-height:40px;
+}
+
+.chip {
+  height:25px;
+  padding:0px;
+  border-radius: 30px;
 }
 
 .seatReserved {

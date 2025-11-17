@@ -47,6 +47,10 @@ export interface CinemaState {
   unReserveSeat: (seatID: string)=> void;
   selectedSeat: { place: SeatGroup, row: number | '', column: number | '' };
   setSelectedSeat: (selectedSeat: { place: SeatGroup, row: number | '', column: number | '' }) => void;
+  darkMode: boolean;
+  setDarkMode: (mode:boolean) => void;
+  bloom: boolean;
+  setBloom: (mode:boolean) => void;
 }
 
 export const useCinemaStore = create<CinemaState>((set) => ({
@@ -67,6 +71,13 @@ export const useCinemaStore = create<CinemaState>((set) => ({
   reserveSeat: (seatID) => set((state) => ({ reservedSeats: { ...state.reservedSeats, [seatID]: true } })),
   unReserveSeat: (seatID) => set((state) => { const obj = {...state.reservedSeats }; delete obj[seatID]; return {reservedSeats: obj};}),
   selectedSeat: { place: 'balcony', row: '', column: '' },
+  darkMode: false,
+  setDarkMode: (mode) => set((state) => {
+    document.documentElement.setAttribute('data-theme', mode ? 'dark' : 'light');
+    return {darkMode: mode}
+  }),
+  bloom: true,
+  setBloom: (mode) => set((state) => ({bloom: mode})),  
   setSelectedSeat: (selectedSeat) => set((state) => {
     console.log('SETSELECTEDSEAT', selectedSeat, state)
     if (!!selectedSeat.column && !!selectedSeat.row) {
@@ -83,6 +94,8 @@ export const useCinemaStore = create<CinemaState>((set) => ({
   }
   ),
 }))
+
+document.documentElement.setAttribute('data-theme', 'light');
 
 export function useSelectedSeat(): SeatSelection {
   const selectedSeat = useCinemaStore((select) => select.selectedSeat)

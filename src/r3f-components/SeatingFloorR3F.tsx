@@ -1,15 +1,18 @@
 import React, { useRef, useState } from 'react'
-import { Canvas, Object3DNode, ThreeEvent, useFrame } from '@react-three/fiber'
+import type {
+  Canvas,
+  //Object3DNode,
+  ThreeEvent, useFrame
+} from '@react-three/fiber'
 import { Suspense } from 'react'
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
-import { SeatGroup, useCinemaStore } from '../store/store'
+import { type SeatGroup, useCinemaStore } from '../store/store'
 import { arrayRange } from "../utilities/arrayRange";
 import { Stats } from '@react-three/drei'
 import { toSeatId } from '../store/store'
 //import { extend } from '@react-three/fiber'
 //import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry'
-import myFont from './trebuc.ttf'
-import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
+//import myFont from './trebuc.ttf'
 import { useFont } from '@react-three/drei'
 import { Text3D } from '@react-three/drei'
 import { BackWallsR3F, BalconyEdgeR3F } from './CinemaParts'
@@ -22,7 +25,7 @@ export function SeatingFloorR3F({ place }: { place: SeatGroup }
 
   const { columns, rows } = seatingLayout[place]
 
-  //const positionX = 'ground' === place ? 0 : (seatingGroup === 'balcony' ? 11 : 22)
+  const positionX = 'ground' === place ? 0 : (seatingGroup === 'balcony' ? 11 : 22)
 
   return (
     // <group position-x={positionX} position-y={'ground' === place ? 0 : 10}>
@@ -129,8 +132,8 @@ export function SeatR3F({ isReserved = false, isSelected = false, isTaken = fals
 }
 
 export function RowR3F({ width }: { width: number }) {
-  const seatingLayout = useCinemaStore((state) => state.seatingLayout)
-  const { columns, rows } = seatingLayout['balcony']
+  //const seatingLayout = useCinemaStore((state) => state.seatingLayout)
+ // const { columns, rows } = seatingLayout['balcony']
 
   const clickHandler = (e: ThreeEvent<MouseEvent>) => {
     // we need to stop propagation here or it might be possible to select Ground seat trough balcony floor!
@@ -138,12 +141,13 @@ export function RowR3F({ width }: { width: number }) {
   }
 
   return (
-    <mesh castShadow receiveShadow
+    <mesh 
+      castShadow receiveShadow
       onClick={clickHandler}
       onPointerEnter={(e) => { e.stopPropagation(); }}
       onPointerLeave={(e) => { e.stopPropagation(); }}
     >
-      <boxBufferGeometry args={[1, 1, 1 * width + 2]} />
+      <boxGeometry args={[1, 1, 1 * width + 1.84]} />
       <meshStandardMaterial
         color={'red'}
         roughness={0.8}
