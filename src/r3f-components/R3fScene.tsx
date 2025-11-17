@@ -54,13 +54,15 @@ export function R3fScene() {
 
   })
 
+  const Bloom1:any = Bloom
+
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Canvas shadows 
       gl={{preserveDrawingBuffer:true}}
       >
        {bloom &&<EffectComposer>
-              <Bloom
+              <Bloom1
                   mipmapBlur={darkMode ? 0 : 0}
                   luminanceThreshold={0.3}
                   luminanceSmoothing={darkMode ? 0.2 : 0.025}
